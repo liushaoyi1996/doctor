@@ -1,0 +1,20 @@
+spring:
+  resources:
+  static-locations: file:${web.upload-path},classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://localhost:3306/jiudian?useUnicode=true&amp&serverTimezone=UTC&characterEncoding=utf8
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: root
+mybatis:
+  mapper-locations: classpath:com.new_jiudian.mapper.*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  file:
+    path:../logs/spring-boot-hello.log
+  level.org.springframework.web: DEBUG
