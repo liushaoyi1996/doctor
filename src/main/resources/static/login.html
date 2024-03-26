@@ -59,8 +59,8 @@
                         document.cookie = result.name;
                         window.location="http://localhost:8080/main.html";
                     } else if (result.success=="2") {
-                        alert("顾客登录成功！");
-                        window.location="http://localhost:8080/page/indent/liji.html"
+                        alert("医生登录成功！");
+                        window.location="http://localhost:8080/main_user.html"
                     }else {
                         $.messager.show({
                             title: 'Error',
@@ -86,12 +86,12 @@
                 <input class="easyui-textbox" type="password" name="psw" id="psw" style="width:100%" data-options="label:'密码:',required:true,novalidate:true">
             </div>
             <div style="margin-bottom:20px">
-                <select class="easyui-combobox" data-options="panelHeight:'auto'" name="sf" label="身份:" style="width:100%;"><option value="gly">管理员</option><option value="gk">顾客</option></select>
+                <select class="easyui-combobox" data-options="panelHeight:'auto'" name="sf" label="身份:" style="width:100%;"><option value="gly">管理员</option><option value="gk">医生</option></select>
             </div>
         </form>
         <div style="text-align:center;padding:5px 0">
             <a href="javascript:void(0)" class="easyui-linkbutton" onclick="sub()" style="width:180px">登录</a>
-            <a href="zhuce.html" id="zc">顾客注册...</a>
+            <a href="zhuce.html" id="zc">医生注册...</a>
         </div>
     </div>
     <script>

@@ -188,39 +188,15 @@
                     width : 120,
                     align : 'center'
                 },{
-                    field : 'type',
-                    title : '职业',
-                    width : 120,
-                    align : 'center',
-                    formatter : function(type) {
-                        if(type=="0"){
-                            return "部长";
-                        }else if(type=="1"){
-                            return "经理";
-                        }else if(type=="2"){
-                            return "前台";
-                        }else if(type=="3"){
-                            return "接待";
-                        }else if(type=="4"){
-                            return "清洁工";
-                        }else if(type=="5"){
-                            return "盥洗工";
-                        }else if(type=="6"){
-                            return "修理工";
-                        }else if(type=="7"){
-                            return "服务生";
-                        }
-                    }
-                },{
                     field : 'branch',
                     title : '部门',
                     width : 120,
                     align : 'center',
                     formatter : function(clean) {
                         if(clean=="0"){
-                            return "客房部";
+                            return "门诊部";
                         }else if(clean=="1"){
-                            return "餐饮部";
+                            return "住院部";
                         }
                     }
                 },{
@@ -270,18 +246,6 @@
 		年龄：从<input class="easyui-textbox" id="year1" style="width:100px">到
 		<input class="easyui-textbox" id="year2" style="width:100px">
 		身份证号：<input class="easyui-textbox" id="number" style="width:150px">
-		职业：
-		<select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" id="type"  style="width:120px">
-			<option value=""></option>
-			<option value="0">部长</option>
-			<option value="1">经理</option>
-			<option value="2">前台</option>
-			<option value="3">接待</option>
-			<option value="4">清洁工</option>
-			<option value="5">盥洗工</option>
-			<option value="6">修理工</option>
-			<option value="7">服务生</option>
-		</select>
 		<br>
 		<div class="top20" style="margin-top: 5px;">
 			手机号：<input class="easyui-textbox" id="phone" style="width:100px">
@@ -319,22 +283,10 @@
 				<option value="1">女</option>
 			</select>
 		</div>
-        <div class="fitem">
-            <select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" name="type" label="职业:" style="width:350px">
-                <option value="0">部长</option>
-                <option value="1">经理</option>
-                <option value="2">前台</option>
-				<option value="3">接待</option>
-				<option value="4">清洁工</option>
-				<option value="5">盥洗工</option>
-				<option value="6">修理工</option>
-				<option value="7">服务生</option>
-            </select>
-        </div>
 		<div class="fitem">
 			<select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" name="branch" label="部门:" style="width:350px">
-				<option value="0">客房部</option>
-				<option value="1">餐饮部</option>
+				<option value="0">门诊部</option>
+				<option value="1">住院部</option>
 			</select>
 		</div>
 		<div class="fitem">
@@ -372,21 +324,9 @@
 				</select>
 			</div>
 			<div class="fitem">
-				<select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" name="type" label="职业:" style="width:350px">
-					<option value="0">部长</option>
-					<option value="1">经理</option>
-					<option value="2">前台</option>
-					<option value="3">接待</option>
-					<option value="4">清洁工</option>
-					<option value="5">盥洗工</option>
-					<option value="6">修理工</option>
-					<option value="7">服务生</option>
-				</select>
-			</div>
-			<div class="fitem">
 				<select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" name="branch" label="部门:" style="width:350px">
-					<option value="0">客房部</option>
-					<option value="1">餐饮部</option>
+					<option value="0">门诊部</option>
+					<option value="1">住院部</option>
 				</select>
 			</div>
 			<div class="fitem">

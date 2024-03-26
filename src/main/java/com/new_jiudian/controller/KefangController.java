@@ -69,6 +69,16 @@ public class KefangController {
         }else{
             map.put("errorMsg","失败！请检查网络或联系管理员");
         }
+//        try {
+//            int i=kefangService.add(map);
+//            if(i==1){
+//                map.put("success",i+"");
+//            }else{
+//                map.put("errorMsg","失败！请检查网络或联系管理员");
+//            }
+//        }catch (Exception e){
+//            map.put("errorMsg","失败！请检查网络或联系管理员");
+//        }
         return map;
     }
 

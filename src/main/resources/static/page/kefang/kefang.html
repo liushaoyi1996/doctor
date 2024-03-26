@@ -27,7 +27,7 @@
             }
 		}
         function newKefang(){
-            $('#dlg').dialog('open').dialog('setTitle','添加客房');
+            $('#dlg').dialog('open').dialog('setTitle','添加医生');
             $('#fm').form('clear');
             url = 'http://localhost:8080/kefang/add';
             var row = $('#dg').datagrid('getSelected');
@@ -36,7 +36,7 @@
         function editKefang() {
             var row = $('#grid').datagrid('getSelected');
             if (row){
-                $('#dlg1').dialog('open').dialog('setTitle','修改客房信息');
+                $('#dlg1').dialog('open').dialog('setTitle','修改医生信息');
                 $('#fm1').form('load',row);
                 $('#grid').datagrid('clearSelections');
             }else{
@@ -137,7 +137,7 @@
         }
 
         $(function(){
-            $('.easyui-textbox').numberbox({
+            $('.num').numberbox({
                 min:0,
                 precision:0
             });
@@ -150,7 +150,7 @@
                 pagination : true,//在DataGrid控件底部显示分页工具栏。
                 columns :[ [ {
                     field:'ck',
-					title:'w',
+					title:'',
                     checkbox:"true",
 
                 },{
@@ -161,90 +161,74 @@
                     hidden:true
                 }, {
                     field : 'sum',
-                    title : '房间号',
+                    title : '医生编号',
                     width : 120,
                     align : 'center'
                 },{
+					field : 'size',
+					title : '医生姓名',
+					width : 120,
+					align : 'center',
+					formatter : function(size) {
+						return size;
+					}
+				},{
                     field : 'type',
-                    title : '房间类型',
+                    title : '医生科室',
                     width : 120,
                     align : 'center',
                     formatter : function(type) {
                         if(type=="0"){
-                            return "单人间";
+                            return "全科";
 						}else if(type=="1"){
-                            return "双人间";
+                            return "普通内科";
 						}else if(type=="2"){
-                            return "大床房";
+                            return "普通外科";
                         }else if(type=="3"){
-                            return "家庭房";
+                            return "骨科";
                         }else if(type=="4"){
-                            return "套房";
-                        }
+							return "儿科";
+						}else if(type=="5"){
+							return "眼科";
+						}else if(type=="6"){
+							return "口腔科";
+						}
                     }
                 },{
                     field : 'level',
-                    title : '等级',
+                    title : '医生等级',
                     width : 120,
                     align : 'center',
                     formatter : function(level) {
                         if(level=="0"){
-                            return "特价间";
+                            return "规培医师";
                         }else if(level=="1"){
-                            return "标准间";
+                            return "主治医师";
                         }else if(level=="2"){
-                            return "高级间";
+                            return "副主任医师";
                         }else if(level=="3"){
-                            return "商务间";
+                            return "主任医师";
                         }else if(level=="4"){
-                            return "豪华间";
-                        }else if(level==""){
-                            return "";
+                            return "专家";
                         }
                     }
                 },{
                     field : 'window',
-                    title : '窗户',
+                    title : '性别',
                     width : 120,
                     align : 'center',
                     formatter : function(window) {
                         if(window=="0"){
-                            return "无窗";
+                            return "男";
                         }else if(window=="1"){
-                            return "有窗";
-                        }else if(window=="2"){
-                            return "有窗（标准）";
-                        }else if(window=="3"){
-                            return "有窗（大窗）";
-                        }else if(window=="4"){
-                            return "有窗（落地）";
+                            return "女";
                         }
                     }
                 },{
                     field : 'money',
-                    title : '价格',
+                    title : '医生工资',
                     width : 120,
                     align : 'center',
-                },{
-                    field : 'clean',
-                    title : '清洁',
-                    width : 120,
-                    align : 'center',
-                    formatter : function(clean) {
-                        if(clean=="0"){
-                            return "已清洁";
-                        }else if(clean=="1"){
-                            return "未清洁";
-                        }
-                    }
-                },{
-                    field : 'size',
-                    title : '房间大小',
-                    width : 120,
-                    align : 'center',
-                    formatter : function(size) {
-                        return size+"㎡";
-                    }
                 }
 
                 ] ],
@@ -261,37 +245,33 @@
 		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newKefang()">添加</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editKefang()">修改</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyKefang()">删除</a><br>
-		房间号：<input class="easyui-textbox" id="sum" style="width:100px">
-		房间类型：
+		医生编号：<input class="easyui-textbox" id="sum" style="width:100px">
+		医生科室：
 		<select class="easyui-combobox" editable="false" id="type" data-options="panelHeight:'auto'"   style="width:120px">
 			<option value=""></option>
-			<option value="0">单人间</option>
-			<option value="1">双人间</option>
-			<option value="2">大床房</option>
-			<option value="3">家庭房</option>
-			<option value="4">套房</option>
+			<option value="0">全科</option>
+			<option value="1">普通内科</option>
+			<option value="2">普通外科</option>
+			<option value="3">骨科</option>
+			<option value="4">儿科</option>
+			<option value="5">眼科</option>
+			<option value="6">口腔科</option>
 		</select>
 		等级：
 		<select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" id="level"  style="width:120px">
 			<option value=""></option>
-			<option value="0">特价间</option>
-			<option value="1">标准间</option>
-			<option value="2">高级间</option>
-			<option value="3">商务间</option>
-			<option value="4">豪华间</option>
+			<option value="0">规培医师</option>
+			<option value="1">主治医师</option>
+			<option value="2">副主任医师</option>
+			<option value="3">主任医师</option>
+			<option value="4">专家</option>
 		</select>
-		窗户：
+		性别：
 		<select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" id="window" style="width:120px">
 			<option value=""></option>
-			<option value="0">无窗</option>
-			<option value="1">暗窗</option>
-			<option value="2">有窗（标准）</option>
-			<option value="3">有窗（大窗）</option>
-			<option value="4">有窗（落地）</option>
+			<option value="0">男</option>
+			<option value="1">女</option>
 		</select>
-
-		价格区间：从<input class="easyui-textbox" id="money1" style="width:60px">到
-		<input class="easyui-textbox" id="money2" style="width:60px">
         <a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="selectBy()">查询</a>
 	</div>
 
@@ -300,54 +280,48 @@
 
 
     <!-- 弹出框 -->
-	<div id="dlg" class="easyui-dialog" style="width:600px;height:500px;padding:30px 60px" closed="true" buttons="#dlg-buttons">
+	<div id="dlg" class="easyui-dialog" style="width:500px;height:500px;padding:30px 60px;" closed="true" buttons="#dlg-buttons">
 	<form id="fm" class="easyui-form" method="post" data-options="novalidate:true">
 		<div class="fitem">
-			<input class="easyui-textbox" name="sum" style="width:350px"  data-options="validType:'length[4,4]',label:'房间号:',required:true">
+			<input class="easyui-textbox" name="sum" type="number" style="width:350px"  data-options="validType:'length[4,4]',label:'医生编号:',required:true">
 		</div>
 		<div class="fitem">
-            <select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" name="type" label="房间类型:" style="width:350px">
-                <option value="0">单人间</option>
-                <option value="1">双人间</option>
-                <option value="2">大床房</option>
-                <option value="3">家庭房</option>
-                <option value="4">套房</option>
+			<input class="easyui-textbox" name="size" style="width:350px" data-options="label:'医生姓名:'">
+		</div>
+		<div class="fitem">
+			<input class="easyui-textbox num" name="money" style="width:350px" data-options="label:'医生工资:'">
+		</div>
+		<div class="fitem">
+            <select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" name="type" label="医生类型:" style="width:350px">
 				<option value=""></option>
+				<option value="0">全科</option>
+				<option value="1">普通内科</option>
+				<option value="2">普通外科</option>
+				<option value="3">骨科</option>
+				<option value="4">儿科</option>
+				<option value="5">眼科</option>
+				<option value="6">口腔科</option>
             </select>
 		</div>
         <div class="fitem">
-            <select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" name="level" label="等级:" style="width:350px">
-                <option value="0">特价间</option>
-                <option value="1">标准间</option>
-                <option value="2">高级间</option>
-                <option value="3">商务间</option>
-                <option value="4">豪华间</option>
+            <select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" name="level" label="医生等级:" style="width:350px">
 				<option value=""></option>
+				<option value="0">规培医师</option>
+				<option value="1">主治医师</option>
+				<option value="2">副主任医师</option>
+				<option value="3">主任医师</option>
+				<option value="4">专家</option>
             </select>
         </div>
         <div class="fitem">
-            <select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" name="window" label="窗户:" style="width:350px">
-                <option value="0">无窗</option>
-                <option value="1">暗窗</option>
-                <option value="2">有窗（标准）</option>
-				<option value="3">有窗（大窗）</option>
-				<option value="4">有窗（落地）</option>
+            <select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" name="window" label="性别:" style="width:350px">
 				<option value=""></option>
+                <option value="0">男</option>
+                <option value="1">女</option>
+
             </select>
         </div>
-		<div class="fitem">
-			<input class="easyui-textbox" name="money" style="width:350px" data-options="label:'价格:',required:true">
-		</div>
-		<div class="fitem">
-			<select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" name="clean" label="清洁:" style="width:350px">
-				<option value="0">已清洁</option>
-				<option value="1">未清洁</option>
-				<option value=""></option>
-			</select>
-		</div>
-		<div class="fitem">
-			<input class="easyui-textbox" name="size" style="width:350px" data-options="label:'大小:'">
-		</div>
+
 	</form>
 </div>
 
@@ -362,51 +336,43 @@
                 <input class="easyui-textbox" name="id" style="width:350px"  data-options="label:'id:'" type="hidden">
             </div>
 			<div class="fitem">
-				<input class="easyui-textbox" name="sum" style="width:350px"  data-options="validType:'length[4,4]',label:'房间号:',required:true">
+				<input class="easyui-textbox" name="sum" type="number" style="width:350px"  data-options="validType:'length[4,4]',label:'医生编号:',required:true">
+			</div>
+			<div class="fitem">
+				<input class="easyui-textbox" name="size" style="width:350px" data-options="label:'医生姓名:'">
+			</div>
+			<div class="fitem">
+				<input class="easyui-textbox" name="money" style="width:350px" data-options="label:'医生工资:',required:true">
 			</div>
             <div class="fitem">
-                <select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" name="type" label="房间类型:" style="width:350px">
-                    <option value="0">单人间</option>
-                    <option value="1">双人间</option>
-                    <option value="2">大床房</option>
-                    <option value="3">家庭房</option>
-                    <option value="4">套房</option>
+                <select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" name="type" label="医生类型:" style="width:350px">
+					<option value="0">全科</option>
+					<option value="1">普通内科</option>
+					<option value="2">普通外科</option>
+					<option value="3">骨科</option>
+					<option value="4">儿科</option>
+					<option value="5">眼科</option>
+					<option value="6">口腔科</option>
 					<option value=""></option>
                 </select>
             </div>
             <div class="fitem">
                 <select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" name="level" label="等级:" style="width:350px">
-                    <option value="0">特价间</option>
-                    <option value="1">标准间</option>
-                    <option value="2">高级间</option>
-                    <option value="3">商务间</option>
-                    <option value="4">豪华间</option>
 					<option value=""></option>
+					<option value="0">规培医师</option>
+					<option value="1">主治医师</option>
+					<option value="2">副主任医师</option>
+					<option value="3">主任医师</option>
+					<option value="4">专家</option>
                 </select>
             </div>
             <div class="fitem">
-                <select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" name="window" label="窗户:" style="width:350px">
-                    <option value="0">无窗</option>
-                    <option value="1">暗窗</option>
-                    <option value="2">有窗（标准）</option>
-                    <option value="3">有窗（大窗）</option>
-					<option value="4">有窗（落地）</option>
+                <select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" name="window" label="性别:" style="width:350px">
 					<option value=""></option>
+					<option value="0">男</option>
+					<option value="1">女</option>
                 </select>
             </div>
-			<div class="fitem">
-				<input class="easyui-textbox" name="money" style="width:350px" data-options="label:'价格:',required:true">
-			</div>
-			<div class="fitem">
-				<select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" name="clean" label="清洁:" style="width:350px">
-					<option value="0">已清洁</option>
-					<option value="1">未清洁</option>
-					<option value=""></option>
-				</select>
-			</div>
-			<div class="fitem">
-				<input class="easyui-textbox" name="size" style="width:350px" data-options="label:'大小:'">
-			</div>
 		</form>
 	</div>
 
